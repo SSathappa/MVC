@@ -1,0 +1,68 @@
+﻿@model CRUDinMVC.Models.StudentModel
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+@{
+    List<CRUDinMVC.Models.CityModel> myCity = new List<CRUDinMVC.Models.CityModel>()
+    {
+        new CRUDinMVC.Models.CityModel {City_Id = "Bangalore", City_Name = "Bangalore"},
+        new CRUDinMVC.Models.CityModel {City_Id = "Chennai", City_Name = "Chennai"},
+        new CRUDinMVC.Models.CityModel {City_Id = "Kanpur", City_Name = "Kanpur"},
+    };
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>StudentModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.City)*@
+
+                @Html.DropDownListFor(model => model.City,
+                             new SelectList(myCity, "City_Id", "City_Name"),
+                    "..Select City..")
+
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

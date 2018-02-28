@@ -1,0 +1,53 @@
+﻿@model CRUDinMVC.Models.StudentModel
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+@*@{
+    List<CRUDinMVC.Models.CityModel> myCity = new List<CRUDinMVC.Models.CityModel>()
+    {
+        new CRUDinMVC.Models.CityModel {City_Id = "Bangalore", City_Name = "Bangalore"},
+        new CRUDinMVC.Models.CityModel {City_Id = "Chennai", City_Name = "Chennai"},
+        new CRUDinMVC.Models.CityModel {City_Id = "Kanpur", City_Name = "Kanpur"},
+    };
+}*@
+
+<div>
+    <h4>StudentModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+            @*@Html.DropDownList("ddl_City", new SelectList(myCity, "City_Id", "City_Name"))*@
+            @*@Html.DropDownListFor(model => model.City,
+                             new SelectList(myCity, "City_Id", "City_Name"),
+                    "..Select City..")*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
